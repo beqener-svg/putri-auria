@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A Journey To You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Fredoka,sans-serif;background:linear-gradient(180deg,#bfe3ff,#ffd6e7);overflow:hidden}
+.page{display:none;min-height:100vh;padding:20px;justify-content:center;align-items:center;flex-direction:column;text-align:center}
+.active{display:flex}
+.card{background:#fff;padding:24px;border-radius:24px;max-width:700px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+h1,h2{font-family:Great Vibes,cursive}
+button{padding:12px 20px;border:none;border-radius:14px;cursor:pointer}
+input{padding:12px;border-radius:12px;border:1px solid #ccc}
+.heart{position:fixed;top:-20px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh)}}
+.photo{width:280px;border-radius:20px;animation:zoom 5s infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+#no{background:#f44;color:#fff}
+#yes{background:#2ecc71;color:#fff}
+</style>
+</head>
+<body>
+
+<audio id="music" loop><source src="loveme.mp3" type="audio/mpeg"></audio>
+
+<div class="page active" id="p1">
+<div class="card">
+<h1>A Journey To You ❤️</h1>
+<p>Masukkan kode rahasia</p>
+<input id="pin1" maxlength="6">
+<br><br><button onclick="check1()">Masuk</button>
+</div>
+</div>
+
+<div class="page" id="p2">
+<div class="card">
+<h2>😝 Salahggg...</h2>
+<p>Masa lupa sih? Coba ingat tanggal spesial kita 📸</p>
+<input id="pin2" maxlength="6">
+<br><br><button onclick="check2()">Lanjut</button>
+</div>
+</div>
+
+<div class="page" id="p3">
+<div class="card">
+<img src="auriza.png" class="photo">
+<p id="typing"></p>
+<h3 id="days"></h3>
+<button onclick="show('p4')">Lanjut ❤️</button>
+</div>
+</div>
+
+<div class="page" id="p4">
+<div class="card">
+<h2>Timeline</h2>
+<p>📸 Pertama kenal</p>
+<p>📸 Pertama foto</p>
+<p>❤️ Hari ini</p>
+<button onclick="show('p5')">Lanjut</button>
+</div>
+</div>
+
+<div class="page" id="p5">
+<div class="card">
+<h2>Tangkap Hatiku ❤️</h2>
+<div id="score">0/5</div>
+</div>
+</div>
+
+<div class="page" id="p6">
+<div class="card">
+<h2>Love Meter ❤️</h2>
+<input type="range" min="0" max="100" value="100" oninput="meter.innerText=this.value+'%'">
+<div id="meter">100%</div>
+<button onclick="show('p7')">Lanjut</button>
+</div>
+</div>
+
+<div class="page" id="p7">
+<div class="card">
+<h2>🌱🌿🌳🌹</h2>
+<p>Nyaman • Percaya • Sayang • Sabar</p>
+<button onclick="show('p8')">Lanjut</button>
+</div>
+</div>
+
+<div class="page" id="p8">
+<div class="card">
+<h2>📩 Klik Amplop</h2>
+<div style="font-size:100px;cursor:pointer" onclick="openLetter()">📩</div>
+<div id="letter" style="display:none">
+<p id="letterText"></p>
+<button onclick="show('p9')">Galeri</button>
+</div>
+</div>
+</div>
+
+<div class="page" id="p9">
+<div class="card">
+<h2>Galeri ❤️</h2>
+<img src="auriza.png" class="photo">
+<button onclick="show('p10')">Lanjut</button>
+</div>
+</div>
+
+<div class="page" id="p10">
+<div class="card">
+<h2>Maukah kamu menjadi bagian dari hidupku yang akan selalu aku perjuangkan?</h2>
+<button id="yes" onclick="mau()">❤️ Kirim Jawabanku ❤️</button>
+<button id="no">Gamau</button>
+</div>
+</div>
+
+<script>
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function check1(){
+if(pin1.value==="010908"){show('p2')} else alert("Coba lagi ❤️");
+}
+function check2(){
+if(pin2.value==="030526"){
+music.play();
+show('p3');
+typeText();
+} else alert("Tanggalnya belum tepat 📸");
+}
+
+function typeText(){
+let t="The moment you came into my life, my heart made its final decision.";
+let i=0;
+let box=document.getElementById('typing');
+let iv=setInterval(()=>{
+box.textContent+=t[i++]||"";
+if(i>t.length) clearInterval(iv);
+},40);
+
+let start=new Date("2026-05-03");
+days.textContent="Sudah bersama selama "+Math.max(0,Math.floor((Date.now()-start)/86400000))+" hari ❤️";
+}
+
+let score=0;
+setInterval(()=>{
+if(!document.getElementById('p5').classList.contains('active')) return;
+let h=document.createElement('div');
+h.innerHTML='❤️';
+h.style.position='fixed';
+h.style.left=Math.random()*90+'vw';
+h.style.top=Math.random()*80+'vh';
+h.style.fontSize='40px';
+h.onclick=()=>{
+score++;
+scoreEl=document.getElementById('score');
+scoreEl.textContent=score+'/5';
+h.remove();
+if(score>=5) show('p6');
+};
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+},800);
+
+function openLetter(){
+letter.style.display='block';
+let txt="Terima kasih sudah hadir dalam hidupku. Aku selalu ingin melihatmu bahagia. Bersamamu terasa seperti rumah. Dan jika suatu hari aku diberi pilihan lagi, aku akan tetap memilihmu. ❤️";
+let i=0; letterText.textContent="";
+let iv=setInterval(()=>{
+letterText.textContent+=txt[i++]||"";
+if(i>txt.length) clearInterval(iv);
+},25);
+}
+
+no.onmouseover=no.ontouchstart=function(){
+this.style.position='fixed';
+this.style.left=Math.random()*80+'vw';
+this.style.top=Math.random()*80+'vh';
+}
+
+function mau(){
+window.open("https://wa.me/6281378597057?text=Hai%20❤️%0AAku%20mau%20menjadi%20bagian%20dari%20hidupmu.%20🤍","_blank");
+alert("❤️ Terima kasih ❤️");
+}
+
+setInterval(()=>{
+let h=document.createElement('div');
+h.className='heart';
+h.innerHTML=Math.random()>.5?'❤️':'📸';
+h.style.left=Math.random()*100+'vw';
+h.style.animationDuration=(2+Math.random()*4)+'s';
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},250);
+</script>
+</body>
+</html>
