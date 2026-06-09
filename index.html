@@ -1,0 +1,3629 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>
+AURIA ENGINE v5.1 ULTRA CINEMATIC
+</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Dancing+Script:wght@700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#05010d;
+--bg2:#0c0218;
+
+--pink:#ff0088;
+--cyan:#00f0ff;
+--gold:#ffd700;
+
+--glass:
+rgba(255,255,255,.05);
+
+--border:
+rgba(255,255,255,.10);
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+font-family:
+'Space Grotesk',
+sans-serif;
+
+-webkit-tap-highlight-color:
+transparent;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+background:
+var(--bg);
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* ===========================
+GALAXY CANVAS
+=========================== */
+
+#galaxyCanvas{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-3;
+
+background:
+linear-gradient(
+180deg,
+#04000d,
+#120321,
+#04000d
+);
+
+}
+
+/* ===========================
+AURORA
+=========================== */
+
+.aurora{
+
+position:fixed;
+
+width:100%;
+height:100%;
+
+z-index:-2;
+
+pointer-events:none;
+
+background:
+
+radial-gradient(
+circle at 20% 30%,
+rgba(0,240,255,.15),
+transparent 40%
+),
+
+radial-gradient(
+circle at 80% 60%,
+rgba(255,0,136,.15),
+transparent 40%
+);
+
+filter:blur(80px);
+
+animation:
+auroraMove 12s linear infinite;
+
+}
+
+@keyframes auroraMove{
+
+0%{
+
+transform:
+translate(0,0);
+
+}
+
+50%{
+
+transform:
+translate(
+20px,
+-20px
+);
+
+}
+
+100%{
+
+transform:
+translate(0,0);
+
+}
+
+}
+
+/* ===========================
+TOP PROGRESS
+=========================== */
+
+.topProgress{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:4px;
+
+background:
+rgba(255,255,255,.05);
+
+z-index:9999;
+
+}
+
+#progressBar{
+
+width:0%;
+
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+var(--cyan),
+var(--pink)
+);
+
+box-shadow:
+0 0 15px var(--pink);
+
+transition:.5s;
+
+}
+
+/* ===========================
+AUDIO BUTTON
+=========================== */
+
+#audioBtn{
+
+position:fixed;
+
+top:20px;
+right:20px;
+
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+background:
+rgba(0,0,0,.35);
+
+backdrop-filter:
+blur(12px);
+
+border:
+1px solid var(--border);
+
+cursor:pointer;
+
+z-index:9999;
+
+font-size:1.2rem;
+
+}
+
+#audioBtn:hover{
+
+transform:scale(1.08);
+
+}
+
+/* ===========================
+PAGE
+=========================== */
+
+.page{
+
+display:none;
+
+min-height:100vh;
+
+padding:
+
+40px
+20px;
+
+justify-content:center;
+align-items:center;
+
+flex-direction:column;
+
+}
+
+.page.active{
+
+display:flex;
+
+animation:
+fadePage .8s ease;
+
+}
+
+@keyframes fadePage{
+
+from{
+
+opacity:0;
+transform:
+translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:
+translateY(0);
+
+}
+
+}
+
+/* ===========================
+CARD
+=========================== */
+
+.card{
+
+width:100%;
+max-width:450px;
+
+background:
+rgba(255,255,255,.04);
+
+backdrop-filter:
+blur(18px);
+
+border:
+1px solid var(--border);
+
+border-radius:28px;
+
+padding:30px;
+
+text-align:center;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.5);
+
+}
+
+/* ===========================
+TITLE
+=========================== */
+
+.logo{
+
+font-family:
+'Cinzel',
+serif;
+
+font-size:2rem;
+
+font-weight:900;
+
+margin-bottom:15px;
+
+}
+
+.glow{
+
+text-shadow:
+
+0 0 15px
+var(--pink),
+
+0 0 30px
+var(--cyan);
+
+}
+
+.desc{
+
+font-size:.95rem;
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+/* ===========================
+BUTTON
+=========================== */
+
+.btn{
+
+border:none;
+
+padding:
+
+14px 30px;
+
+border-radius:50px;
+
+cursor:pointer;
+
+font-weight:700;
+
+color:white;
+
+background:
+linear-gradient(
+135deg,
+var(--pink),
+#c3006b
+);
+
+box-shadow:
+0 10px 25px rgba(255,0,136,.35);
+
+margin-top:20px;
+
+}
+
+.btn:hover{
+
+transform:
+translateY(-3px);
+
+}
+
+/* ===========================
+LOADER
+=========================== */
+
+.loaderBar{
+
+width:100%;
+
+height:8px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.08);
+
+overflow:hidden;
+
+margin-top:25px;
+
+}
+
+#loaderFill{
+
+width:0%;
+
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+var(--cyan),
+var(--pink)
+);
+
+}
+
+/* ===========================
+PIN DOT
+=========================== */
+
+.pinWrap{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+margin:
+
+25px
+0;
+
+}
+
+.pin{
+
+width:16px;
+height:16px;
+
+border-radius:50%;
+
+border:
+2px solid
+rgba(255,255,255,.4);
+
+}
+
+.pin.active{
+
+background:
+var(--pink);
+
+border-color:
+var(--pink);
+
+box-shadow:
+0 0 10px
+var(--pink);
+
+}
+
+/* ===========================
+KEYPAD
+=========================== */
+
+.keypad{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,75px);
+
+gap:15px;
+
+justify-content:center;
+
+}
+
+.key{
+
+width:75px;
+height:75px;
+
+border-radius:50%;
+
+border:
+1px solid
+rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.04);
+
+color:white;
+
+font-size:1.2rem;
+
+cursor:pointer;
+
+}
+
+.key:active{
+
+transform:
+scale(.9);
+
+background:
+var(--cyan);
+
+color:black;
+
+}
+
+/* ===========================
+HERO PHOTO
+=========================== */
+
+.heroFrame{
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+padding:5px;
+
+margin:auto;
+
+background:
+linear-gradient(
+45deg,
+var(--cyan),
+var(--pink)
+);
+
+animation:
+heroRotate 8s linear infinite;
+
+}
+
+@keyframes heroRotate{
+
+from{
+
+transform:
+rotate(0deg);
+
+}
+
+to{
+
+transform:
+rotate(360deg);
+
+}
+
+}
+
+.heroFrame img{
+
+width:100%;
+height:100%;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+.typewriter{
+
+min-height:100px;
+
+margin-top:25px;
+
+line-height:1.8;
+
+font-size:1rem;
+
+}
+
+/* ===========================
+TIMELINE
+=========================== */
+
+.timeline{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+margin-top:25px;
+
+}
+
+.timelineItem{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:12px;
+
+border-radius:15px;
+
+background:
+rgba(255,255,255,.03);
+
+}
+
+.timelineItem img{
+
+width:55px;
+height:55px;
+
+border-radius:12px;
+
+object-fit:cover;
+
+}
+
+.timelineText{
+
+text-align:left;
+
+}
+
+.timelineText h4{
+
+color:var(--cyan);
+
+font-size:.95rem;
+
+margin-bottom:4px;
+
+}
+
+.timelineText p{
+
+font-size:.8rem;
+
+color:#b8c2d0;
+
+}
+
+/* ===========================
+VOICE MEMORY
+=========================== */
+
+.voiceBox{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.03);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+}
+
+#visualizer{
+
+height:70px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+gap:6px;
+
+margin-bottom:15px;
+
+}
+
+#visualizer span{
+
+width:10px;
+
+height:20px;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+to top,
+var(--cyan),
+var(--pink)
+);
+
+animation:
+wave 1s infinite ease-in-out;
+
+}
+
+#visualizer span:nth-child(2){
+animation-delay:.1s;
+}
+
+#visualizer span:nth-child(3){
+animation-delay:.2s;
+}
+
+#visualizer span:nth-child(4){
+animation-delay:.3s;
+}
+
+#visualizer span:nth-child(5){
+animation-delay:.4s;
+}
+
+@keyframes wave{
+
+0%{
+height:20px;
+}
+
+50%{
+height:60px;
+}
+
+100%{
+height:20px;
+}
+
+}
+
+/* ===========================
+TIME ODYSSEY
+=========================== */
+
+.counterBox{
+
+margin-top:25px;
+
+padding:25px;
+
+border-radius:22px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+}
+
+#daysCounter{
+
+font-size:4rem;
+
+font-weight:900;
+
+font-family:
+'Cinzel',
+serif;
+
+text-shadow:
+0 0 20px var(--cyan);
+
+}
+
+.counterLabel{
+
+font-size:.8rem;
+
+letter-spacing:3px;
+
+margin-top:8px;
+
+color:var(--pink);
+
+}
+
+.miniCounter{
+
+display:flex;
+
+justify-content:space-around;
+
+margin-top:25px;
+
+}
+
+.miniCounter span{
+
+display:block;
+
+font-size:1.8rem;
+
+font-weight:700;
+
+}
+
+.miniCounter p{
+
+font-size:.8rem;
+
+color:#cbd5e1;
+
+}
+
+/* ===========================
+COVERFLOW
+=========================== */
+
+.coverflow{
+
+height:260px;
+
+position:relative;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+margin-top:25px;
+
+}
+
+.coverItem{
+
+width:150px;
+height:210px;
+
+object-fit:cover;
+
+border-radius:18px;
+
+position:absolute;
+
+border:3px solid white;
+
+cursor:pointer;
+
+transition:.5s;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.45);
+
+}
+
+/* ===========================
+SCRAPBOOK
+=========================== */
+
+.book{
+
+height:330px;
+
+position:relative;
+
+margin-top:25px;
+
+}
+
+.bookPage{
+
+display:none;
+
+height:100%;
+
+background:white;
+
+color:#222;
+
+border-radius:18px;
+
+padding:15px;
+
+}
+
+.bookPage.active{
+
+display:block;
+
+animation:
+bookFade .5s ease;
+
+}
+
+@keyframes bookFade{
+
+from{
+
+opacity:0;
+
+transform:
+translateX(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateX(0);
+
+}
+
+}
+
+.bookImage{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:12px;
+
+margin:12px 0;
+
+}
+
+.bookNav{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+margin-top:15px;
+
+}
+
+/* ===========================
+PUZZLE
+=========================== */
+
+.puzzleBox{
+
+margin-top:20px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.03);
+
+}
+
+.answerInput{
+
+width:100%;
+
+padding:15px;
+
+border-radius:50px;
+
+border:
+1px solid rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.04);
+
+color:white;
+
+outline:none;
+
+margin-top:15px;
+
+text-align:center;
+
+}
+
+/* ===========================
+LOVE LETTER
+=========================== */
+
+.envelope{
+
+width:170px;
+height:120px;
+
+margin:auto;
+
+margin-top:20px;
+
+position:relative;
+
+cursor:pointer;
+
+background:#3d1f63;
+
+border-radius:
+0 0 15px 15px;
+
+}
+
+.flap{
+
+position:absolute;
+
+top:0;
+left:0;
+
+border-left:
+85px solid transparent;
+
+border-right:
+85px solid transparent;
+
+border-top:
+60px solid #5a3290;
+
+transform-origin:top;
+
+transition:.6s;
+
+}
+
+.envelope.open .flap{
+
+transform:
+rotateX(180deg);
+
+}
+
+.letter{
+
+display:none;
+
+margin-top:25px;
+
+background:white;
+
+color:#222;
+
+padding:25px;
+
+border-radius:20px;
+
+}
+
+.handwriting{
+
+font-family:
+'Dancing Script',
+cursive;
+
+font-size:1.5rem;
+
+line-height:1.8;
+
+}
+
+.videoBg{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+z-index:-1;
+
+display:none;
+
+}
+
+.videoBg video{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+/* ===========================
+WHATSAPP BUTTON
+=========================== */
+
+.waBtn{
+
+background:#25D366;
+
+color:white;
+
+border:none;
+
+padding:
+15px 30px;
+
+border-radius:50px;
+
+font-weight:700;
+
+cursor:pointer;
+
+box-shadow:
+0 10px 25px rgba(37,211,102,.4);
+
+}
+
+/* ===========================
+CONFETTI CANVAS
+=========================== */
+
+#confettiCanvas{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:99999;
+
+display:none;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="galaxyCanvas"></canvas>
+
+<div class="aurora"></div>
+
+<div class="topProgress">
+<div id="progressBar"></div>
+</div>
+
+<div id="audioBtn">
+🎵
+</div>
+
+<audio
+id="bgMusic"
+loop>
+
+<source
+src="suarahati.mp3"
+type="audio/mpeg">
+
+</audio>
+
+<!-- HTML HALAMAN DIMULAI PADA PART 3 -->
+<!-- =====================================
+STAGE 0 : LOADING
+===================================== -->
+
+<section
+class="page active"
+id="stage0">
+
+<div class="card">
+
+<h1 class="logo glow">
+AURIA ENGINE
+</h1>
+
+<p class="desc">
+
+Initializing Ultra Cinematic Experience...
+
+</p>
+
+<div class="loaderBar">
+
+<div id="loaderFill"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 1 : PIN ACCESS
+===================================== -->
+
+<section
+class="page"
+id="stage1">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+FOR PUTRI ✨
+
+</h1>
+
+<p class="desc">
+
+Masukkan kode rahasia hubungan kita
+
+</p>
+
+<div class="pinWrap">
+
+<div class="pin"></div>
+<div class="pin"></div>
+<div class="pin"></div>
+
+<div class="pin"></div>
+<div class="pin"></div>
+<div class="pin"></div>
+
+</div>
+
+<div class="keypad">
+
+<button class="key">1</button>
+<button class="key">2</button>
+<button class="key">3</button>
+
+<button class="key">4</button>
+<button class="key">5</button>
+<button class="key">6</button>
+
+<button class="key">7</button>
+<button class="key">8</button>
+<button class="key">9</button>
+
+<button class="key">C</button>
+<button class="key">0</button>
+<button class="key">⌫</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 2 : HERO INTRO
+===================================== -->
+
+<section
+class="page"
+id="stage2">
+
+<div class="card">
+
+<div class="heroFrame">
+
+<img
+src="auriza.png"
+loading="lazy">
+
+</div>
+
+<div
+class="typewriter"
+id="typewriterText">
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(3)">
+
+OPEN CHRONICLE →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 3 : TIMELINE
+===================================== -->
+
+<section
+class="page"
+id="stage3">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+OUR CHRONICLE
+
+</h1>
+
+<p class="desc">
+
+Jejak perjalanan yang mengubah segalanya.
+
+</p>
+
+<div class="timeline">
+
+<div class="timelineItem">
+
+<img
+src="zahin.jpg"
+loading="lazy">
+
+<div class="timelineText">
+
+<h4>
+First Meet
+</h4>
+
+<p>
+Pertemuan sederhana yang ternyata
+mengubah seluruh cerita.
+</p>
+
+</div>
+
+</div>
+
+<div class="timelineItem">
+
+<img
+src="auria.jpg"
+loading="lazy">
+
+<div class="timelineText">
+
+<h4>
+Late Night Talks
+</h4>
+
+<p>
+Percakapan panjang yang
+membuat hati mulai nyaman.
+</p>
+
+</div>
+
+</div>
+
+<div class="timelineItem">
+
+<img
+src="putri.jpg"
+loading="lazy">
+
+<div class="timelineText">
+
+<h4>
+First Comfort
+</h4>
+
+<p>
+Saat suara dan kehadiranmu
+menjadi tempat pulang.
+</p>
+
+</div>
+
+</div>
+
+<div class="timelineItem">
+
+<img
+src="putri2.jpg"
+loading="lazy">
+
+<div class="timelineText">
+
+<h4>
+Our Promise
+</h4>
+
+<p>
+Momen ketika hati memutuskan
+untuk bertahan.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(4)">
+
+VOICE MEMORY →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 4 : VOICE MEMORY
+===================================== -->
+
+<section
+class="page"
+id="stage4">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+VOICE MEMORY 🎤
+
+</h1>
+
+<p class="desc">
+
+Sebuah pesan suara yang dibuat
+langsung dari hati.
+
+</p>
+
+<div class="voiceBox">
+
+<div id="visualizer">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+<audio
+controls
+style="width:100%;">
+
+<source
+src="suarahati.mp3"
+type="audio/mpeg">
+
+</audio>
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(5)">
+
+TIME ODYSSEY →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 5 : COUNTER
+===================================== -->
+
+<section
+class="page"
+id="stage5">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+TIME ODYSSEY
+
+</h1>
+
+<p class="desc">
+
+Sejak 03 Mei 2026
+
+</p>
+
+<div class="counterBox">
+
+<div id="daysCounter">
+0
+</div>
+
+<div class="counterLabel">
+
+HARI BERSAMA
+
+</div>
+
+</div>
+
+<div class="miniCounter">
+
+<div>
+
+<span id="hours">
+0
+</span>
+
+<p>Jam</p>
+
+</div>
+
+<div>
+
+<span id="minutes">
+0
+</span>
+
+<p>Menit</p>
+
+</div>
+
+<div>
+
+<span id="seconds">
+0
+</span>
+
+<p>Detik</p>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(6)">
+
+OPEN GALLERY →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 6 : 3D COVERFLOW GALLERY
+===================================== -->
+
+<section
+class="page"
+id="stage6">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+3D GALLERY 🖼️
+
+</h1>
+
+<p class="desc">
+
+Kumpulan momen yang selalu
+ingin kuingat.
+
+</p>
+
+<div
+class="coverflow"
+id="coverflow">
+
+<img
+src="puput.jpg"
+class="coverItem"
+loading="lazy">
+
+<img
+src="imut.jpg"
+class="coverItem"
+loading="lazy">
+
+<img
+src="beqen.jpg"
+class="coverItem"
+loading="lazy">
+
+<img
+src="zah.jpg"
+class="coverItem"
+loading="lazy">
+
+<img
+src="put.jpg"
+class="coverItem"
+loading="lazy">
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(7)">
+
+OPEN SCRAPBOOK →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 7 : MEMORY SCRAPBOOK
+===================================== -->
+
+<section
+class="page"
+id="stage7">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+MEMORY SCRAPBOOK 📖
+
+</h1>
+
+<p class="desc">
+
+Beberapa halaman kecil
+dari perjalanan kita.
+
+</p>
+
+<div class="book">
+
+<div
+class="bookPage active"
+id="book0">
+
+<h3>
+
+Page 1
+
+</h3>
+
+<img
+src="puti.jpg"
+class="bookImage"
+loading="lazy">
+
+<p>
+
+Setiap foto membawa cerita.
+Dan cerita favoritku
+selalu tentang kamu.
+
+</p>
+
+</div>
+
+<div
+class="bookPage"
+id="book1">
+
+<h3>
+
+Page 2
+
+</h3>
+
+<img
+src="aur.jpg"
+class="bookImage"
+loading="lazy">
+
+<p>
+
+Bukan tempatnya yang spesial,
+tetapi karena ada kamu di dalamnya.
+
+</p>
+
+</div>
+
+<div
+class="bookPage"
+id="book2">
+
+<h3>
+
+Page 3
+
+</h3>
+
+<img
+src="putri.jpg"
+class="bookImage"
+loading="lazy">
+
+<p>
+
+Senyummu adalah alasan
+hari-hari berat terasa ringan.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="bookNav">
+
+<button
+class="btn"
+onclick="prevBook()">
+
+◀
+
+</button>
+
+<button
+class="btn"
+onclick="nextBook()">
+
+▶
+
+</button>
+
+</div>
+
+<button
+class="btn"
+onclick="openStage(8)">
+
+OPEN PUZZLE →
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 8 : PUZZLE CHALLENGE
+===================================== -->
+
+<section
+class="page"
+id="stage8">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+PUZZLE CHALLENGE 🧩
+
+</h1>
+
+<p class="desc">
+
+Jawab pertanyaan berikut
+untuk membuka surat rahasia.
+
+</p>
+
+<div class="puzzleBox">
+
+<h3
+style="
+margin-bottom:15px;
+color:var(--cyan);
+">
+
+Apa panggilan favoritku
+untuk kamu?
+
+</h3>
+
+<input
+
+type="text"
+
+id="puzzleAnswer"
+
+class="answerInput"
+
+placeholder="
+Ketik jawaban...
+">
+
+<button
+class="btn"
+onclick="checkPuzzle()">
+
+UNLOCK LETTER
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 9 : SECRET LOVE LETTER
+===================================== -->
+
+<section
+class="page"
+id="stage9">
+
+<div class="card">
+
+<h1 class="logo glow">
+
+SECRET LETTER 💌
+
+</h1>
+
+<p class="desc">
+
+Ketuk amplop untuk membuka
+pesan rahasia.
+
+</p>
+
+<div
+class="envelope"
+id="envelope">
+
+<div class="flap"></div>
+
+</div>
+
+<div
+class="letter"
+id="letterBox">
+
+<h2
+style="
+margin-bottom:15px;
+font-family:Cinzel;
+">
+
+Dear Putri ❤️
+
+</h2>
+
+<p
+class="handwriting"
+id="letterText">
+
+</p>
+
+<br>
+
+<button
+class="btn"
+onclick="openStage(10)">
+
+FINAL SURPRISE →
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+STAGE 10 : GRAND FINALE
+===================================== -->
+
+<section
+class="page"
+id="stage10">
+
+<div class="videoBg"
+id="videoBackground">
+
+<!--
+Tidak memakai zahin.mp4
+Diganti background cinematic CSS
+-->
+
+</div>
+
+<div class="card">
+
+<h1 class="logo glow">
+
+THE GRAND FINALE ✨
+
+</h1>
+
+<p class="desc">
+
+Jika seluruh perjalanan ini
+bisa kuulang lagi,
+aku tetap akan memilihmu.
+
+</p>
+
+<div
+id="countdownBox"
+style="
+font-size:4rem;
+font-weight:900;
+margin:20px 0;
+">
+
+3
+
+</div>
+
+<button
+class="btn"
+id="startFinaleBtn">
+
+START FINALE
+
+</button>
+
+<div
+id="finalQuestion"
+style="display:none;">
+
+<h2
+style="
+margin:25px 0;
+line-height:1.6;
+">
+
+Maukah kamu terus
+menjadi bagian
+dari perjalanan hidupku? ❤️
+
+</h2>
+
+<button
+class="waBtn"
+id="yesBtn">
+
+❤️ IYA, MAU ❤️
+
+</button>
+
+<br><br>
+
+<button
+class="btn"
+id="runawayBtn">
+
+Tidak
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+FLOATING HEART LAYER
+===================================== -->
+
+<div id="heartLayer"></div>
+
+<!-- =====================================
+PHOTO RAIN LAYER
+===================================== -->
+
+<div id="photoRain"></div>
+
+<!-- =====================================
+CONFETTI CANVAS
+===================================== -->
+
+<canvas
+id="confettiCanvas">
+
+</canvas>
+
+<!-- =====================================
+ENDING MODAL
+===================================== -->
+
+<div
+id="endingModal"
+
+style="
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+rgba(0,0,0,.92);
+
+z-index:999999;
+
+justify-content:center;
+align-items:center;
+
+padding:25px;
+
+">
+
+<div
+class="card"
+
+style="
+max-width:500px;
+">
+
+<h1 class="logo glow">
+
+THANK YOU ❤️
+
+</h1>
+
+<p
+class="desc"
+style="
+margin-top:15px;
+">
+
+Terima kasih sudah
+membuka seluruh perjalanan ini.
+
+Semoga senyum itu
+selalu ada,
+hari ini,
+besok,
+dan selamanya.
+
+</p>
+
+<br>
+
+<button
+class="waBtn"
+onclick="sendToWhatsapp()">
+
+OPEN WHATSAPP
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =====================================
+PRELOAD IMAGES
+===================================== -->
+
+<img
+src="auriza.png"
+style="display:none">
+
+<img
+src="putri.jpg"
+style="display:none">
+
+<img
+src="auria.jpg"
+style="display:none">
+
+<img
+src="zahin.jpg"
+style="display:none">
+
+<img
+src="puput.jpg"
+style="display:none">
+
+<img
+src="imut.jpg"
+style="display:none">
+
+<img
+src="putri2.jpg"
+style="display:none">
+
+<img
+src="beqen.jpg"
+style="display:none">
+
+<img
+src="zah.jpg"
+style="display:none">
+
+<img
+src="put.jpg"
+style="display:none">
+
+<img
+src="puti.jpg"
+style="display:none">
+
+<img
+src="aur.jpg"
+style="display:none">
+
+<script>
+
+/* =====================================
+AURIA ENGINE JS START
+===================================== */
+
+let currentStage = 0;
+
+let pinCode = "";
+
+let currentBookPage = 0;
+
+let currentCover = 2;
+
+const pages =
+document.querySelectorAll(
+".page"
+);
+
+const progressBar =
+document.getElementById(
+"progressBar"
+);
+
+function openStage(id){
+
+pages.forEach(page=>{
+
+page.classList.remove(
+"active"
+);
+
+});
+
+document
+.getElementById(
+"stage"+id
+)
+.classList.add(
+"active"
+);
+
+progressBar.style.width =
+(id/10)*100+"%";
+
+currentStage=id;
+
+}
+
+/* =====================================
+LOADER
+===================================== */
+
+let load=0;
+
+const loaderInterval =
+setInterval(()=>{
+
+load+=5;
+
+const fill=
+document.getElementById(
+"loaderFill"
+);
+
+if(fill){
+
+fill.style.width=
+load+"%";
+
+}
+
+if(load>=100){
+
+clearInterval(
+loaderInterval
+);
+
+setTimeout(()=>{
+
+openStage(1);
+
+},700);
+
+}
+
+},120);
+
+/* =====================================
+AUDIO CONTROL
+===================================== */
+
+const bgMusic=
+document.getElementById(
+"bgMusic"
+);
+
+document
+.getElementById(
+"audioBtn"
+)
+.addEventListener(
+"click",
+()=>{
+
+if(bgMusic.paused){
+
+bgMusic.play();
+
+}
+else{
+
+bgMusic.pause();
+
+}
+
+}
+);
+
+/* =====================================
+PIN SYSTEM
+===================================== */
+
+const keys=
+document.querySelectorAll(
+".key"
+);
+
+const dots=
+document.querySelectorAll(
+".pin"
+);
+
+keys.forEach(btn=>{
+
+btn.addEventListener(
+"click",
+()=>{
+
+const val=
+btn.innerText;
+
+if(val==="C"){
+
+pinCode="";
+
+updatePin();
+
+return;
+
+}
+
+if(val==="⌫"){
+
+pinCode=
+pinCode.slice(
+0,-1
+);
+
+updatePin();
+
+return;
+
+}
+
+if(pinCode.length<6){
+
+pinCode+=val;
+
+updatePin();
+
+}
+
+});
+
+});
+
+/* =====================================
+PIN DOT UPDATE
+===================================== */
+
+function updatePin(){
+
+dots.forEach((dot,index)=>{
+
+if(index<pinCode.length){
+
+dot.classList.add(
+"active"
+);
+
+}
+else{
+
+dot.classList.remove(
+"active"
+);
+
+}
+
+});
+
+if(pinCode.length===6){
+
+verifyPin();
+
+}
+
+}
+
+/* =====================================
+PIN VERIFICATION
+===================================== */
+
+function verifyPin(){
+
+setTimeout(()=>{
+
+if(pinCode==="030526"){
+
+openStage(2);
+
+startTypewriter();
+
+bgMusic.play()
+.catch(()=>{});
+
+}
+else{
+
+alert(
+"Kode salah 😝"
+);
+
+pinCode="";
+
+updatePin();
+
+}
+
+},300);
+
+}
+
+/* =====================================
+TYPEWRITER
+===================================== */
+
+function startTypewriter(){
+
+const target=
+document.getElementById(
+"typewriterText"
+);
+
+const text=
+
+"Sejak hadirnya kamu dalam hidupku, semuanya berubah menjadi lebih indah. Ada banyak hal yang ingin kusampaikan, tetapi satu hal yang pasti, aku bersyukur karena semesta mempertemukan kita.";
+
+let i=0;
+
+target.innerHTML="";
+
+function write(){
+
+if(i<text.length){
+
+target.innerHTML+=
+text.charAt(i);
+
+i++;
+
+setTimeout(
+write,
+40
+);
+
+}
+
+}
+
+write();
+
+}
+
+/* =====================================
+TIME ODYSSEY
+===================================== */
+
+function startCounter(){
+
+const startDate =
+new Date(
+"2026-05-03T00:00:00"
+);
+
+function update(){
+
+const now =
+new Date();
+
+const diff =
+now-startDate;
+
+if(diff<0) return;
+
+const days =
+Math.floor(
+diff/
+86400000
+);
+
+const hours =
+Math.floor(
+(diff/3600000)%24
+);
+
+const minutes =
+Math.floor(
+(diff/60000)%60
+);
+
+const seconds =
+Math.floor(
+(diff/1000)%60
+);
+
+const dayNode =
+document.getElementById(
+"daysCounter"
+);
+
+if(dayNode){
+
+dayNode.innerHTML=
+days;
+
+}
+
+const h=
+document.getElementById(
+"hours"
+);
+
+const m=
+document.getElementById(
+"minutes"
+);
+
+const s=
+document.getElementById(
+"seconds"
+);
+
+if(h) h.innerHTML=hours;
+if(m) m.innerHTML=minutes;
+if(s) s.innerHTML=seconds;
+
+}
+
+update();
+
+setInterval(
+update,
+1000
+);
+
+}
+
+/* =====================================
+AUTO COUNTER
+===================================== */
+
+const originalOpenStage =
+openStage;
+
+openStage=function(id){
+
+originalOpenStage(id);
+
+if(id===5){
+
+startCounter();
+
+}
+
+if(id===6){
+
+renderCoverflow();
+
+}
+
+}
+
+/* =====================================
+COVERFLOW
+===================================== */
+
+function renderCoverflow(){
+
+const items=
+document.querySelectorAll(
+".coverItem"
+);
+
+items.forEach((item,index)=>{
+
+const offset=
+index-currentCover;
+
+if(offset===0){
+
+item.style.transform=
+"translateX(0px) scale(1.15)";
+
+item.style.opacity=1;
+
+item.style.zIndex=10;
+
+}
+
+else if(offset===-1){
+
+item.style.transform=
+"translateX(-110px) rotateY(35deg)";
+
+item.style.opacity=.75;
+
+item.style.zIndex=5;
+
+}
+
+else if(offset===1){
+
+item.style.transform=
+"translateX(110px) rotateY(-35deg)";
+
+item.style.opacity=.75;
+
+item.style.zIndex=5;
+
+}
+
+else{
+
+item.style.transform=
+`translateX(${offset*170}px) scale(.75)`;
+
+item.style.opacity=.25;
+
+item.style.zIndex=1;
+
+}
+
+});
+
+}
+
+/* =====================================
+CLICK COVERFLOW
+===================================== */
+
+document.addEventListener(
+"click",
+e=>{
+
+if(
+e.target.classList.contains(
+"coverItem"
+)
+){
+
+const all=[
+...document.querySelectorAll(
+".coverItem"
+)
+];
+
+currentCover=
+all.indexOf(
+e.target
+);
+
+renderCoverflow();
+
+}
+
+});
+
+/* =====================================
+SCRAPBOOK
+===================================== */
+
+function nextBook(){
+
+const pages=
+document.querySelectorAll(
+".bookPage"
+);
+
+pages[currentBookPage]
+.classList.remove(
+"active"
+);
+
+currentBookPage++;
+
+if(
+currentBookPage>=
+pages.length
+){
+
+currentBookPage=0;
+
+}
+
+pages[currentBookPage]
+.classList.add(
+"active"
+);
+
+}
+
+function prevBook(){
+
+const pages=
+document.querySelectorAll(
+".bookPage"
+);
+
+pages[currentBookPage]
+.classList.remove(
+"active"
+);
+
+currentBookPage--;
+
+if(
+currentBookPage<0
+){
+
+currentBookPage=
+pages.length-1;
+
+}
+
+pages[currentBookPage]
+.classList.add(
+"active"
+);
+
+}
+
+/* =====================================
+PUZZLE SYSTEM
+===================================== */
+
+function checkPuzzle(){
+
+const answer=
+document
+.getElementById(
+"puzzleAnswer"
+)
+.value
+.trim()
+.toLowerCase();
+
+if(
+
+answer==="puput imut" ||
+
+answer==="puput"
+
+){
+
+alert(
+"Puzzle berhasil dibuka ❤️"
+);
+
+openStage(9);
+
+}
+else{
+
+alert(
+"Jawaban belum tepat 😝"
+);
+
+}
+
+}
+
+/* =====================================
+LOVE LETTER
+===================================== */
+
+const envelope =
+document.getElementById(
+"envelope"
+);
+
+if(envelope){
+
+envelope.addEventListener(
+"click",
+openLetter
+);
+
+}
+
+function openLetter(){
+
+document
+.getElementById(
+"envelope"
+)
+.classList.add(
+"open"
+);
+
+setTimeout(()=>{
+
+const box=
+document.getElementById(
+"letterBox"
+);
+
+box.style.display=
+"block";
+
+animateLetter();
+
+},700);
+
+}
+
+function animateLetter(){
+
+const target=
+document.getElementById(
+"letterText"
+);
+
+const text=
+
+"Terima kasih karena selalu hadir, selalu mendukung, dan selalu menjadi alasan mengapa hari-hariku terasa lebih berarti. Aku tidak tahu apa yang akan terjadi di masa depan, tetapi aku tahu satu hal: aku ingin terus berjalan bersamamu.";
+
+let i=0;
+
+target.innerHTML="";
+
+function writeLetter(){
+
+if(i<text.length){
+
+target.innerHTML+=
+text.charAt(i);
+
+i++;
+
+setTimeout(
+writeLetter,
+35
+);
+
+}
+
+}
+
+writeLetter();
+
+}
+
+/* =====================================
+GALAXY STAR ENGINE
+===================================== */
+
+const galaxyCanvas =
+document.getElementById(
+"galaxyCanvas"
+);
+
+if(galaxyCanvas){
+
+const gctx =
+galaxyCanvas.getContext("2d");
+
+function resizeGalaxy(){
+
+galaxyCanvas.width =
+window.innerWidth;
+
+galaxyCanvas.height =
+window.innerHeight;
+
+}
+
+resizeGalaxy();
+
+window.addEventListener(
+"resize",
+resizeGalaxy
+);
+
+let stars=[];
+
+for(let i=0;i<180;i++){
+
+stars.push({
+
+x:Math.random()*window.innerWidth,
+y:Math.random()*window.innerHeight,
+r:Math.random()*2+0.5,
+a:Math.random(),
+s:Math.random()*0.02
+
+});
+
+}
+
+function drawGalaxy(){
+
+gctx.clearRect(
+0,0,
+galaxyCanvas.width,
+galaxyCanvas.height
+);
+
+stars.forEach(star=>{
+
+star.a+=star.s;
+
+gctx.beginPath();
+
+gctx.fillStyle=
+`rgba(255,255,255,${
+Math.abs(
+Math.sin(star.a)
+)
+})`;
+
+gctx.arc(
+star.x,
+star.y,
+star.r,
+0,
+Math.PI*2
+);
+
+gctx.fill();
+
+});
+
+requestAnimationFrame(
+drawGalaxy
+);
+
+}
+
+drawGalaxy();
+
+}
+
+/* =====================================
+METEOR SHOWER
+===================================== */
+
+function createMeteor(){
+
+const meteor=
+document.createElement(
+"div"
+);
+
+meteor.className=
+"meteor";
+
+meteor.style.left=
+Math.random()*100+
+"vw";
+
+meteor.style.top=
+Math.random()*30+
+"vh";
+
+meteor.style.animationDuration=
+(Math.random()*2+2)
++"s";
+
+document.body.appendChild(
+meteor
+);
+
+setTimeout(()=>{
+
+meteor.remove();
+
+},5000);
+
+}
+
+setInterval(
+createMeteor,
+2200
+);
+
+/* =====================================
+HEART RAIN
+===================================== */
+
+function createHeart(){
+
+const heart=
+document.createElement(
+"div"
+);
+
+heart.innerHTML="❤️";
+
+heart.className=
+"heartRain";
+
+heart.style.left=
+Math.random()*100+
+"vw";
+
+heart.style.fontSize=
+(Math.random()*20+18)
++"px";
+
+heart.style.animationDuration=
+(Math.random()*4+4)
++"s";
+
+document.body.appendChild(
+heart
+);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},8000);
+
+}
+
+setInterval(
+createHeart,
+700
+);
+
+/* =====================================
+PHOTO RAIN
+===================================== */
+
+const rainPhotos=[
+
+"putri.jpg",
+"auria.jpg",
+"putri2.jpg",
+"puput.jpg",
+"imut.jpg",
+"beqen.jpg",
+"zah.jpg",
+"put.jpg",
+"puti.jpg",
+"aur.jpg"
+
+];
+
+function createPhotoRain(){
+
+const img=
+document.createElement(
+"img"
+);
+
+img.src=
+
+rainPhotos[
+Math.floor(
+Math.random()*
+rainPhotos.length
+)
+];
+
+img.className=
+"photoRainItem";
+
+img.style.left=
+Math.random()*100+
+"vw";
+
+img.style.width=
+(Math.random()*30+50)
++"px";
+
+img.style.animationDuration=
+(Math.random()*4+5)
++"s";
+
+document.body.appendChild(
+img
+);
+
+setTimeout(()=>{
+
+img.remove();
+
+},10000);
+
+}
+
+setInterval(
+createPhotoRain,
+1500
+);
+
+/* =====================================
+CONFETTI PREMIUM
+===================================== */
+
+const confettiCanvas =
+document.getElementById(
+"confettiCanvas"
+);
+
+const confettiCtx =
+confettiCanvas ?
+confettiCanvas.getContext("2d")
+:null;
+
+let confetti=[];
+
+function setupConfetti(){
+
+if(!confettiCanvas) return;
+
+confettiCanvas.width=
+window.innerWidth;
+
+confettiCanvas.height=
+window.innerHeight;
+
+}
+
+setupConfetti();
+
+window.addEventListener(
+"resize",
+setupConfetti
+);
+
+function launchConfetti(){
+
+confetti=[];
+
+for(let i=0;i<250;i++){
+
+confetti.push({
+
+x:
+Math.random()*
+window.innerWidth,
+
+y:
+-Math.random()*500,
+
+size:
+Math.random()*8+4,
+
+speed:
+Math.random()*5+2,
+
+rot:
+Math.random()*360,
+
+spin:
+Math.random()*8
+
+});
+
+}
+
+animateConfetti();
+
+}
+
+function animateConfetti(){
+
+if(!confettiCtx) return;
+
+confettiCtx.clearRect(
+0,
+0,
+confettiCanvas.width,
+confettiCanvas.height
+);
+
+confetti.forEach(c=>{
+
+c.y+=c.speed;
+
+c.rot+=c.spin;
+
+confettiCtx.save();
+
+confettiCtx.translate(
+c.x,
+c.y
+);
+
+confettiCtx.rotate(
+c.rot*
+Math.PI/180
+);
+
+confettiCtx.fillStyle=
+`hsl(${
+Math.random()*360
+},100%,60%)`;
+
+confettiCtx.fillRect(
+-c.size/2,
+-c.size/2,
+c.size,
+c.size
+);
+
+confettiCtx.restore();
+
+});
+
+if(
+confetti.some(
+c=>c.y<
+window.innerHeight+50
+)
+){
+
+requestAnimationFrame(
+animateConfetti
+);
+
+}
+
+}
+
+/* =====================================
+RUNAWAY BUTTON
+===================================== */
+
+const runawayBtn=
+document.getElementById(
+"runawayBtn"
+);
+
+if(runawayBtn){
+
+function moveButton(){
+
+const x=
+Math.random()*
+(window.innerWidth-150);
+
+const y=
+Math.random()*
+(window.innerHeight-70);
+
+runawayBtn.style.position=
+"fixed";
+
+runawayBtn.style.left=
+x+"px";
+
+runawayBtn.style.top=
+y+"px";
+
+}
+
+runawayBtn.addEventListener(
+"mouseenter",
+moveButton
+);
+
+runawayBtn.addEventListener(
+"touchstart",
+e=>{
+
+e.preventDefault();
+
+moveButton();
+
+}
+);
+
+}
+
+/* =====================================
+FINAL COUNTDOWN
+===================================== */
+
+function startFinale(){
+
+const startBtn=
+document.getElementById(
+"startFinaleBtn"
+);
+
+const counter=
+document.getElementById(
+"countdownBox"
+);
+
+startBtn.style.display=
+"none";
+
+let num=3;
+
+counter.innerHTML=num;
+
+const timer=
+setInterval(()=>{
+
+num--;
+
+counter.innerHTML=num;
+
+if(num<=0){
+
+clearInterval(timer);
+
+counter.style.display=
+"none";
+
+document
+.getElementById(
+"finalQuestion"
+)
+.style.display=
+"block";
+
+launchConfetti();
+
+}
+
+},1000);
+
+}
+
+const finaleBtn=
+document.getElementById(
+"startFinaleBtn"
+);
+
+if(finaleBtn){
+
+finaleBtn.addEventListener(
+"click",
+startFinale
+);
+
+}
+
+/* =====================================
+WHATSAPP ENDING SYSTEM
+===================================== */
+
+function sendToWhatsApp(){
+
+const phone =
+"6281378597056";
+
+const message =
+
+"❤️ Hai sayang... Aku sudah menyelesaikan perjalanan AURIA ENGINE v5.1 ULTRA CINEMATIC ini. Jawabanku tetap sama: Aku mau terus bersama kamu, melangkah, bertumbuh, dan memperjuangkan hubungan ini selamanya. ❤️";
+
+launchConfetti();
+
+setTimeout(()=>{
+
+window.location.href=
+`https://wa.me/${phone}?text=${
+encodeURIComponent(message)
+}`;
+
+},1200);
+
+}
+
+/* =====================================
+ACCEPT BUTTON
+===================================== */
+
+const acceptBtn=
+document.getElementById(
+"acceptBtn"
+);
+
+if(acceptBtn){
+
+acceptBtn.addEventListener(
+"click",
+sendToWhatsApp
+);
+
+}
+
+/* =====================================
+AUTO COVERFLOW INIT
+===================================== */
+
+window.addEventListener(
+"load",
+()=>{
+
+if(
+typeof renderCoverflow===
+"function"
+){
+
+renderCoverflow();
+
+}
+
+}
+);
+
+/* =====================================
+AUTO MUSIC START
+===================================== */
+
+document.addEventListener(
+"click",
+()=>{
+
+if(
+
+bgMusic &&
+bgMusic.paused
+
+){
+
+bgMusic.play()
+.catch(()=>{});
+
+}
+
+},
+{once:true}
+);
+
+/* =====================================
+SCROLL PARALLAX
+===================================== */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const y=
+window.scrollY;
+
+const glow=
+document.querySelector(
+".glowLayer"
+);
+
+if(glow){
+
+glow.style.transform=
+`translateY(${
+y*0.2
+}px)`;
+
+}
+
+}
+);
+
+/* =====================================
+PERFORMANCE BOOST
+===================================== */
+
+function optimizePerformance(){
+
+const imgs=
+document.querySelectorAll(
+"img"
+);
+
+imgs.forEach(img=>{
+
+img.loading="lazy";
+
+img.decoding="async";
+
+});
+
+}
+
+optimizePerformance();
+
+/* =====================================
+PRELOAD IMPORTANT ASSETS
+===================================== */
+
+const preloadAssets=[
+
+"auriza.png",
+"putri.jpg",
+"auria.jpg",
+"putri2.jpg",
+"zahin.jpg",
+"puput.jpg",
+"imut.jpg",
+"beqen.jpg",
+"zah.jpg",
+"put.jpg",
+"puti.jpg",
+"aur.jpg"
+
+];
+
+preloadAssets.forEach(src=>{
+
+const img=
+new Image();
+
+img.src=src;
+
+});
+
+/* =====================================
+LOVE MESSAGE ROTATOR
+===================================== */
+
+const quotes=[
+
+"Every moment with you feels magical ✨",
+
+"You are my favorite notification ❤️",
+
+"My safest place is beside you 🤍",
+
+"Thank you for existing 🌹",
+
+"You are my home 🏡",
+
+"My forever favorite person 💕"
+
+];
+
+let quoteIndex=0;
+
+function rotateQuote(){
+
+const target=
+document.getElementById(
+"quoteRotator"
+);
+
+if(!target) return;
+
+target.style.opacity=0;
+
+setTimeout(()=>{
+
+target.innerHTML=
+quotes[quoteIndex];
+
+target.style.opacity=1;
+
+quoteIndex++;
+
+if(
+quoteIndex>=quotes.length
+){
+
+quoteIndex=0;
+
+}
+
+},300);
+
+}
+
+setInterval(
+rotateQuote,
+4000
+);
+
+/* =====================================
+AMBIENT GLOW ANIMATION
+===================================== */
+
+setInterval(()=>{
+
+const glow=
+document.querySelector(
+".ambientGlow"
+);
+
+if(!glow) return;
+
+glow.style.opacity=
+Math.random()*0.5+0.2;
+
+},1800);
+
+/* =====================================
+ENDING MESSAGE
+===================================== */
+
+function showEndingMessage(){
+
+const endBox=
+document.getElementById(
+"endingMessage"
+);
+
+if(endBox){
+
+endBox.style.display=
+"block";
+
+}
+
+}
+
+/* =====================================
+FINAL EASTER EGG
+===================================== */
+
+let secretTap=0;
+
+document.addEventListener(
+"dblclick",
+()=>{
+
+secretTap++;
+
+if(secretTap===5){
+
+alert(
+"❤️ Easter Egg Unlocked ❤️\n\nI Love You More Than Yesterday."
+);
+
+secretTap=0;
+
+}
+
+}
+);
+
+/* =====================================
+AUTO INIT
+===================================== */
+
+console.log(
+"%cAURIA ENGINE v5.1 ULTRA CINEMATIC LOADED",
+"color:#ff4fa3;font-size:18px;font-weight:bold;"
+);
+
+console.log(
+"%cPowered by Love ❤️",
+"color:#ffffff;font-size:12px;"
+);
+
+/* =====================================
+END OF ENGINE
+===================================== */
+
+</script>
+
+</body>
+</html>
